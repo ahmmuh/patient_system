@@ -4,6 +4,7 @@ import AllmäntillståndForm from './components/AllmäntillståndForm';
 import BehandlingsForm from './components/BehandlingsForm';
 import DiagnosForm from './components/DiagnosForm';
 import OperationskodForm from './components/OperationskodForm';
+import PatientRegister from './components/PatientRegister';
 
 
 function App() {
@@ -38,9 +39,14 @@ const [allmäntillStånd, setAllmäntillstånd] = useState({
 
   })
 
+
+  const [selectedBehandling, setSelectedBehandling] = useState("")
+
 useEffect(() =>{
   setBehandling(behandling);
   setDiagnos(diagnos)
+
+  setSelectedBehandling(selectedBehandling)
 
   console.log("Diagnos ", diagnos)
   console.log("behandling ", behandling)
@@ -48,6 +54,7 @@ useEffect(() =>{
 })
   return (
     <div className="App container mt-5">
+      <PatientRegister/>
     <DiagnosForm diagnos={diagnos}
     diagnosLista={diagnosLista}
     setDiagnos={setDiagnos}
@@ -58,7 +65,11 @@ useEffect(() =>{
     <BehandlingsForm behandling={behandling}
     setBehandling={setBehandling}
     behandlingsLista={behandlingsLista}
+    selectedBehandling={selectedBehandling}
+    setSelectedBehandling={selectedBehandling}
     />
+
+    {selectedBehandling === "kirurgi"? <OperationskodForm/> :null}
 
 
     <AllmäntillståndForm/>

@@ -1,11 +1,12 @@
 import React from 'react'
 
-function BehandlingsForm({behandling, setBehandling, behandlingsLista}) {
+function BehandlingsForm({behandling, setBehandling, behandlingsLista,
+selectedBehandling, setSelectedBehandling}) {
   return (
     <div className='row'>
         <div className="mb-3">
             <label htmlFor="" className="form-label">
-        <h4>BehandlingsTyper</h4>
+        <h5>BehandlingsTyper</h5>
 
             </label>
             <select className="form-select form-select-lg"
@@ -18,6 +19,7 @@ function BehandlingsForm({behandling, setBehandling, behandlingsLista}) {
             
             </select>
         </div>
+        {selectedBehandling}
         
     </div>
   )

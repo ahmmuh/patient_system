@@ -6,6 +6,22 @@ function DiagnosForm({diagnos,setDiagnos, diagnosLista,
     <div className='row'>
       <div className='col'>
        
+        <div className="mb-3">
+          <label htmlFor="" className="form-label"><h5>Diagnos</h5></label>
+          <select
+          onChange={(e) => setDiagnos(e.target.value)}
+            className="form-select form-select-lg"          >
+            <option selected>Välj diagnos</option>
+            {
+              diagnosLista.map((diagno) =>(
+                <option key={diagno.id} value={diagno.id}>{diagno.diagnosTyp}</option>
+
+              ))
+            }
+         
+          </select>
+
+        </div>
 
         <div className="mb-3">
           <label htmlFor="grundDiagnosDatum" className="form-label">Grund Diagnos Datum</label>
@@ -23,23 +39,6 @@ function DiagnosForm({diagnos,setDiagnos, diagnosLista,
         
         </div> 
 
-
-        <div className="mb-3">
-          <label htmlFor="" className="form-label">City</label>
-          <select
-          onChange={(e) => setDiagnos(e.target.value)}
-            className="form-select form-select-lg"          >
-            <option selected>Välj diagnos</option>
-            {
-              diagnosLista.map((diagno) =>(
-                <option key={diagno.id} value={diagno.id}>{diagno.diagnosTyp}</option>
-
-              ))
-            }
-         
-          </select>
-
-        </div>
         
       </div>
     </div>
