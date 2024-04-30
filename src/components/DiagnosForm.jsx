@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 
-function DiagnosForm({diagnos,setDiagnos, diagnosLista,
-  diagnosDatum, setDiagnosDatum}) {
+function DiagnosForm({diagnos,setDiagnos, diagnosLista}) {
+
   return (
-    <div className='row'>
+    <div className='row mb-5'>
       <div className='col'>
        
         <div className="mb-3">
-          <label htmlFor="" className="form-label"><h5>Diagnos</h5></label>
+          <label htmlFor="" className="form-label"><h5 className='lead'>Grund för diagnos</h5></label>
           <select
           onChange={(e) => setDiagnos(e.target.value)}
             className="form-select form-select-lg"          >
-            <option selected>Välj diagnos</option>
+            <option defaultValue>Välj diagnos</option>
             {
               diagnosLista.map((diagno) =>(
-                <option key={diagno.id} value={diagno.id}>{diagno.diagnosTyp}</option>
+                <option key={diagno.diagnosId} value={diagno.Id}>{diagno.diagnosTyp}</option>
 
               ))
             }
@@ -24,16 +24,16 @@ function DiagnosForm({diagnos,setDiagnos, diagnosLista,
         </div>
 
         <div className="mb-3">
-          <label htmlFor="grundDiagnosDatum" className="form-label">Grund Diagnos Datum</label>
+          <label htmlFor={diagnos.diagnosDatum} className="form-label">Diagnos Datum</label>
           <input
             type="date"
             className="form-control"
             name="diagnosDatum"
             id="diagnosDatum"
-            value={diagnosDatum}
+            value={diagnos.diagnosDatum}
             aria-describedby="diagnosDatum"
             placeholder="diagnosDatum"
-            onChange={(e) => {setDiagnosDatum(e.target.value)}}
+            onChange={(e) => {setDiagnos(e.target.value)}}
 
           />
         

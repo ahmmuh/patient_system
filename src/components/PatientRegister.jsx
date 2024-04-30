@@ -1,26 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { patients } from '../data/patient'
 
-function PatientRegister() {
+function PatientRegister({patient,setPatient}) {
 
-    const [patientList, setPatients] = useState(patients)
+
+
+
+    // useEffect(() =>{
+    //   setPatient(patient);
+    //   console.log("Valda patient " , patient.name)
+    // },[])
   return (
-    <div className='row'>
+    <div className='row my-3'>
+      <p>{patient}</p>
         <div className="mb-3">
           <label htmlFor="" className="form-label"><h3>Patient information</h3></label>
-          <select
-          onChange={(e) => setPatients(e.target.value)}
+          <select  
+          onChange={(e) => setPatient(e.target.value)}
             className="form-select form-select-lg"          >
-            <option selected>Välj patient</option>
+            <option defaultValue="Välj">Välj patient</option>
             {
               patients.map((patient) =>(
                 <option key={patient.id} value={patient.id}>{patient.name} - {patient.age} år gammal</option>
 
               ))
             }
-         
           </select>
-
         </div>
     </div>
   )

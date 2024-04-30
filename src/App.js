@@ -22,44 +22,51 @@ function App() {
     {diagnosId:4, diagnosTyp: "klinisk undersökning"},
   ]
 
-  const [diagnosDatum, setDiagnosDatum] = useState("")
+  // const [diagnosDatum, setDiagnosDatum] = useState("")
 
   const [diagnos,setDiagnos] = useState({
-    // grundDiagnos: "",
-    // diagnosLista: diagnosLista,
-
-  });
+    diagnosTyp: "",
+    diagnosDatum: ""
+});
 const [allmäntillStånd, setAllmäntillstånd] = useState({
 
 })
 
 
-  const [behandling,setBehandling] = useState({
-    behandlngsDatum: Date,
-
-  })
+  const [behandling,setBehandling] = useState({})
 
 
   const [selectedBehandling, setSelectedBehandling] = useState("")
 
+  const [operationkod,setOperationkod] = useState([])
+  const [ecog, setEcog] = useState(0)
+
+  const [patient, setPatient] = useState()
+
+
 useEffect(() =>{
   setBehandling(behandling);
   setDiagnos(diagnos)
-
   setSelectedBehandling(selectedBehandling)
 
-  console.log("Diagnos ", diagnos)
+  // console.log("Diagnos ", diagnos)
   console.log("behandling ", behandling)
-  //console.log("Diagnos datum ", diagnosDatum)
-})
+  // console.log("Operationkod ", operationkod)
+  console.log("ECOG ", ecog) 
+  // console.log("Patient ", patient)
+console.log("Diagnos: ", diagnos)
+
+},[])
   return (
     <div className="App container mt-5">
-      <PatientRegister/>
-    <DiagnosForm diagnos={diagnos}
+      <PatientRegister 
+      patient={patient} 
+      setPatient={setPatient}
+      />
+    <DiagnosForm 
     diagnosLista={diagnosLista}
+    diagnos={diagnos}
     setDiagnos={setDiagnos}
-    diagnosDatum={diagnosDatum}
-    setDiagnosDatum={setDiagnosDatum}
     />
 
     <BehandlingsForm behandling={behandling}
@@ -69,11 +76,26 @@ useEffect(() =>{
     setSelectedBehandling={selectedBehandling}
     />
 
-    {selectedBehandling === "kirurgi"? <OperationskodForm/> :null}
+    {selectedBehandling === "kirurgi"? "Ahmed":null}
 
+    <div className='row'>
+     {
+      behandling === "kirurgi"? <OperationskodForm 
+      operationkod={operationkod}
+      setOperationkod={setOperationkod}
+      
+      /> : null
+     }
+    </div>
 
-    <AllmäntillståndForm/>
+    <AllmäntillståndForm
+    ecog={ecog}
+    setEcog={setEcog}
+    />
 
+    <hr/>
+
+    
 
 <div className='mt-5'>
 <button type='submit' className='btn btn-primary'>Spara</button>

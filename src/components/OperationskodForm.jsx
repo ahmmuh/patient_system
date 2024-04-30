@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 
-function OperationskodForm({selectedBehandling, setSelectedBehandling}) {
-    const [operationkod, setOperationkod] = useState("")
-    const [operationskodList, setOperationkodList] = useState([])
+function OperationskodForm({operationkod,setOperationkod}) {
+
   return (
-    <div className='col'>
-        <div class="mb-3">
-            <label for="" class="form-label">Name</label>
+   <div className='row mb-5'>
+     <div className='col'>
+        <div className="">
+            <label htmlFor="" className="form-label">Operationkod</label>
             <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="operationkod"
                 id="operationkod"
                 value={operationkod}
@@ -20,6 +20,7 @@ function OperationskodForm({selectedBehandling, setSelectedBehandling}) {
         </div>
         
     </div>
+   </div>
   )
 }
 
