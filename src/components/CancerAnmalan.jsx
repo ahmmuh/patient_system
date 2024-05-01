@@ -4,6 +4,7 @@ import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
 import { useNavigate, useNavigation } from "react-router-dom";
+import { validateOperationskod } from "../validation/formValidate.js";
 function CancerAnmalan() {
   const navigate = useNavigate()
 
@@ -32,11 +33,15 @@ function CancerAnmalan() {
 
   console.log(patient);
 
+  
+
   // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
   let { diagnos, behandlingar, allmanTillstand } = patient;
+  console.log(behandlingar?.kirurgi)
 
   const patientChangeHandler = (e) => {
     e.preventDefault();
+    
     setPatient({
       ...patient,
       [e.target.name]: e.target.value,
