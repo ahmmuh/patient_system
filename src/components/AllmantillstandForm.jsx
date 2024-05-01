@@ -1,18 +1,21 @@
 import React from 'react'
 
-function AllmäntillståndForm({allmänTillstånd,allmänTillståndChagneHandler}) {
+function AllmantillstandForm({allmanTillstand,allmanTillstandChagneHandler}) {
   return (
     <div className='row'>
-      <h5 className='lead'>Patientens allmäntillstånd </h5>
+      <h5 className='lead'>Patientens allmanTillstand </h5>
       <div className='col'>
         <div className='mb-3'>
-        <label htmlFor="Ecog">ECOG Värde</label>
+        <label htmlFor="ecog">ECOG Värde</label>
         <input className='form-control'
           type='number'
+          name='ecog'
+          id='ecog'
+          value={allmanTillstand.ecog}
+          onChange={allmanTillstandChagneHandler}
           min={0}
           max={5}
-          value={allmänTillstånd.Ecog}
-          onChange={(e) => allmänTillståndChagneHandler(e.target.value)}
+         
           placeholder='ECOG, 0–5'/>
         </div>
       </div>
@@ -25,10 +28,10 @@ function AllmäntillståndForm({allmänTillstånd,allmänTillståndChagneHandler
           type="date"
           name="datum"
           id="datum"
-          value={allmänTillstånd.datum.toLocaleString()}
+          value={allmanTillstand.datum.toLocaleString()}
           placeholder="Behandlings Datum"
           className="form-control"
-          onChange={allmänTillståndChagneHandler}
+          onChange={allmanTillstandChagneHandler}
         />
       </div> 
      </div>
@@ -36,4 +39,4 @@ function AllmäntillståndForm({allmänTillstånd,allmänTillståndChagneHandler
   )
 }
 
-export default AllmäntillståndForm
+export default AllmantillstandForm

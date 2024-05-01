@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import AllmäntillståndForm from './components/AllmäntillståndForm';
+import AllmäntillståndForm from './components/AllmantillstandForm';
 import BehandlingsForm from './components/BehandlingsForm';
 import DiagnosForm from './components/DiagnosForm';
 import OperationskodForm from './components/OperationskodForm';

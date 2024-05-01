@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 function Patientform({ patient,patientChangeHandler }) {
-
-// console.log("Old patient",patient)
   return (
     <div className="col">
     <div className="mb-3">

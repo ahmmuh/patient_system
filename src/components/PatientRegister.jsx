@@ -3,7 +3,7 @@ import { behandlingsLista, diagnosLista } from "../data/cancerData";
 import DiagnosForm from "./DiagnosForm";
 import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
-import AllmäntillståndForm from "./AllmäntillståndForm";
+import AllmantillstandForm from "./AllmantillstandForm";
 function PatientRegister() {
 
   const [patient, setPatient] = useState({
@@ -14,18 +14,16 @@ function PatientRegister() {
     diagnos: {diagnosTyp: "", diagnosDatum: new Date},
     behandlingar: {behandlingsTyp: "",behandlingsDatum: new Date},
 
-    allmänTillstånd: {
-      Ecog: "",
-      datum:""
+    allmanTillstand: {
+      ecog: 0,
+      datum:new Date
     }
   });
 
   console.log(patient)
  
 // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
-let {diagnos} = patient; 
-let {behandlingar} = patient;
-let {allmänTillstånd} = patient;
+let {diagnos,behandlingar,allmanTillstand} = patient; 
 
 
   const patientChangeHandler = (e) => {
@@ -52,11 +50,11 @@ let {allmänTillstånd} = patient;
   }
 
 
-  const allmänTillståndChagneHandler =(e)=>{
+  const allmanTillstandChagneHandler =(e)=>{
     setPatient({
       ...patient,
-      allmänTillstånd:{
-        ...patient.allmänTillstånd,
+      allmanTillstand:{
+        ...patient.allmanTillstand,
         [e.target.name]: e.target.value
       }
     })
@@ -74,15 +72,15 @@ const diagnosChangeHandler =(e) =>{
 }
   return (
     <>
-    <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    <div className="accordion" id="accordionExample">
+  <div className="accordion-item">
+    <h2 className="accordion-header" id="headingOne">
+      <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         Patient Information
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
  {/* Patient information */}
  <div className="row justify-content-center align-items-center g-2">
       <div className="col">
@@ -95,14 +93,14 @@ const diagnosChangeHandler =(e) =>{
         </div>
     </div>
   </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+  <div className="accordion-item">
+    <h2 className="accordion-header" id="headingTwo">
+      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         Diagnos
       </button>
     </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
   {/* Diagnos */}
 <div className="row justify-content-center align-items-center g-2">
       <div className="col">
@@ -118,14 +116,14 @@ const diagnosChangeHandler =(e) =>{
       </div>
     </div>
   </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+  <div className="accordion-item">
+    <h2 className="accordion-header" id="headingThree">
+      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         Behandling
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+    <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
      {/* Behandlingar */}
      <div className="row justify-content-center align-items-center g-2">
       <div className="col">
@@ -145,20 +143,20 @@ const diagnosChangeHandler =(e) =>{
 
   {/* Allmäntillstånd */}
 
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+  <div className="accordion-item">
+    <h2 className="accordion-header" id="headingThree">
+      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
       Allmäntillstånd
       </button>
     </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
+    <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div className="accordion-body">
      <div className="row justify-content-center align-items-center g-2">
       <div className="col">
         <h3>Allmäntillstånd</h3>
-        <AllmäntillståndForm 
-        allmänTillstånd={allmänTillstånd}
-        allmänTillståndChagneHandler={allmänTillståndChagneHandler}
+        <AllmantillstandForm 
+        allmanTillstand={allmanTillstand}
+        allmanTillstandChagneHandler={allmanTillstandChagneHandler}
         setPatient={setPatient}
         />
       </div>
@@ -167,21 +165,6 @@ const diagnosChangeHandler =(e) =>{
     </div>
   </div>
 </div>
-
-
-    <div className="container">
-     
-
-    
-
-
-{/* test form */}
-{/* <form>
-  <input type="text" value={patient.behandlingar.behandlingsTyp} onChange={changeHandler}/>
-  <input type="date" value={patient.behandlingar.behandlingsDatum} onChange={changeHandler}/>
-</form> */}
-   
-  </div>
   </>
   )
 }
