@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { behandlingsLista, diagnosLista } from "../data/cancerData";
 import DiagnosForm from "./DiagnosForm";
 import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
+import { useNavigate, useNavigation } from "react-router-dom";
 function CancerAnmalan() {
+  const navigate = useNavigate()
+
   const [patient, setPatient] = useState({
+
     firstName: "",
     lastName: "",
     age: "",
@@ -79,8 +82,10 @@ function CancerAnmalan() {
     patients = JSON.parse(localStorage.getItem("patients","[]"))
     patients.push(patient)
     localStorage.setItem("patients", JSON.stringify(patients));
-    console.log(patient);
+    navigate("/")
+
   }
+  
   return (
     <>
       <form onSubmit={sparaPatient}>
@@ -233,7 +238,9 @@ function CancerAnmalan() {
               </div>
             </div>
           </div>
-          <button type="submit" className="btn btn-success mt-3">
+          <button type="submit" className="btn btn-lg mt-1"
+          style={{backgroundColor: "#ee9f62", color:"white", width: "100%"}}
+          >
             Spara
           </button>
         </div>
