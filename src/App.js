@@ -5,6 +5,7 @@ import BehandlingsForm from './components/BehandlingsForm';
 import DiagnosForm from './components/DiagnosForm';
 import OperationskodForm from './components/OperationskodForm';
 import PatientRegister from './components/PatientRegister';
+import Patientform from './components/Patientform';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
 
   const [diagnos,setDiagnos] = useState({
     diagnosTyp: "",
-    diagnosDatum: ""
+    diagnosDatum: new Date
 });
 const [allmäntillStånd, setAllmäntillstånd] = useState({
 
@@ -43,64 +44,61 @@ const [allmäntillStånd, setAllmäntillstånd] = useState({
 
   const [patient, setPatient] = useState()
 
+  const handleChangeForDiagnos =(e) =>{
+    const value = e.target.value
+    setDiagnos({...diagnos, [e.target.name]: value});
+    
+  }
+  // [event.target.name] : value
 
-useEffect(() =>{
-  setBehandling(behandling);
-  setDiagnos(diagnos)
-  setSelectedBehandling(selectedBehandling)
+
+
+// useEffect(() =>{
+//   setBehandling(behandling);
+  // setSelectedBehandling(selectedBehandling)
 
   // console.log("Diagnos ", diagnos)
-  console.log("behandling ", behandling)
+  // console.log("behandling ", behandling)
   // console.log("Operationkod ", operationkod)
-  console.log("ECOG ", ecog) 
+  // console.log("ECOG ", ecog) 
   // console.log("Patient ", patient)
-console.log("Diagnos: ", diagnos)
+// console.log("Diagnos: ", diagnos)
 
-},[])
+// },[])
   return (
     <div className="App container mt-5">
-      <PatientRegister 
-      patient={patient} 
-      setPatient={setPatient}
-      />
-    <DiagnosForm 
-    diagnosLista={diagnosLista}
-    diagnos={diagnos}
-    setDiagnos={setDiagnos}
-    />
 
-    <BehandlingsForm behandling={behandling}
-    setBehandling={setBehandling}
-    behandlingsLista={behandlingsLista}
-    selectedBehandling={selectedBehandling}
-    setSelectedBehandling={selectedBehandling}
-    />
+      <PatientRegister/>
 
-    {selectedBehandling === "kirurgi"? "Ahmed":null}
-
-    <div className='row'>
-     {
-      behandling === "kirurgi"? <OperationskodForm 
-      operationkod={operationkod}
-      setOperationkod={setOperationkod}
-      
-      /> : null
-     }
+    
+    
+    <hr/>
+    <div className="row justify-content-center align-items-center g-2"
+    >
+      <div className="col">
+        <h3>Diagnos</h3>
+        <p>Form</p>
+      </div>
     </div>
 
-    <AllmäntillståndForm
-    ecog={ecog}
-    setEcog={setEcog}
-    />
+    <hr/>
+    <div className="row justify-content-center align-items-center g-2"
+    >
+      <div className="col">
+        <h3>Behandling</h3>
+      </div>
+    </div>
 
     <hr/>
 
-    
 
-<div className='mt-5'>
-<button type='submit' className='btn btn-primary'>Spara</button>
+    <div className="row justify-content-center align-items-center g-2"
+    >
+      <div className="col">
+        <h3>AllmäntillståndForm</h3>
+      </div>
+    </div>
 
-  </div>   
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 
-function BehandlingsForm({behandling, setBehandling, behandlingsLista,
-selectedBehandling, setSelectedBehandling}) {
+function BehandlingsForm({behandlingar,setPatientBehandlingar}) {
   return (
     <div className='row mb-3'>
         <div className="col mb-3">
@@ -11,10 +10,12 @@ selectedBehandling, setSelectedBehandling}) {
             </label>
             <select className="form-select form-select-lg"
       
-                onChange={(e) => setBehandling(e.target.value)}> 
+                onChange={(e) => setPatientBehandlingar(e.target.value)}
+                
+                > 
                 <option value="Välj" defaultValue>Välj behandlingstyp</option>
                 {
-                    behandlingsLista.map((foundedBehandling) => (
+                    behandlingar.map((foundedBehandling) => (
                         <option key={foundedBehandling.behandlingID} 
                         value={foundedBehandling.behandlingsID}>{foundedBehandling.behandlingsTyp}</option>
                     ))
@@ -22,7 +23,6 @@ selectedBehandling, setSelectedBehandling}) {
             
             </select>
         </div>
-        {selectedBehandling}
         
     </div>
   )
