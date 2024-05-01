@@ -12,7 +12,14 @@ function PatientRegister() {
     age: "",
     phone: "",
     diagnos: {diagnosTyp: "", diagnosDatum: new Date},
-    behandlingar: {behandlingsTyp: "",behandlingsDatum: new Date},
+    behandlingar: [
+      {
+        behandlingsTyp: "",behandlingsDatum: new Date,
+        kirurgi: {
+          operationskod: ""
+        }
+      }
+    ],
 
     allmanTillstand: {
       ecog: 0,
@@ -35,20 +42,7 @@ let {diagnos,behandlingar,allmanTillstand} = patient;
 
   };
 
-  //behandlingar changeHandler
-  const behandlingHandlerChange =(e) =>{
-   setPatient({
-    ...patient,
-    behandlingar:{
-      ...patient.behandlingar,
-      [e.target.name]:  e.target.value,
-
-    }
-
-   })
-
-  }
-
+ 
 
   const allmanTillstandChagneHandler =(e)=>{
     setPatient({
@@ -57,6 +51,31 @@ let {diagnos,behandlingar,allmanTillstand} = patient;
         ...patient.allmanTillstand,
         [e.target.name]: e.target.value
       }
+    })
+  }
+
+   //behandlingar changeHandler
+   const behandlingChangeHandler =(e) =>{
+    setPatient({
+     ...patient,
+     behandlingar:{
+       ...patient.behandlingar,
+       [e.target.name]:  e.target.value,
+ 
+     }
+ 
+    })
+ 
+   }
+
+  const kirurgiChagneHandler =(e)=>{
+    setPatient({
+      ...patient.behandlingar,
+      kirurgi:{
+        ...patient.behandlingar,
+        [e.target.name]: e.target.value
+      }
+      
     })
   }
 
@@ -70,8 +89,18 @@ const diagnosChangeHandler =(e) =>{
     }
   })
 }
+
+
+//spara patien med nödvändiga information
+
+function sparaPatient(e){
+  e.preventDefault();
+  localStorage.setItem("patient", JSON.stringify(patient))
+  console.log(patient)
+}
   return (
     <>
+    <form onSubmit={sparaPatient}>
     <div className="accordion" id="accordionExample">
   <div className="accordion-item">
     <h2 className="accordion-header" id="headingOne">
@@ -130,7 +159,8 @@ const diagnosChangeHandler =(e) =>{
         <h3>Behandlingar</h3>
         <BehandlingsForm 
         behandlingar={behandlingar}
-        behandlingHandlerChange={behandlingHandlerChange}
+        behandlingChangeHandler={behandlingChangeHandler}
+        kirurgiChagneHandler={kirurgiChagneHandler}
         setPatient={setPatient}
         />
       </div>
@@ -138,8 +168,6 @@ const diagnosChangeHandler =(e) =>{
       </div>
     </div>
   </div>
-
-
 
   {/* Allmäntillstånd */}
 
@@ -164,7 +192,10 @@ const diagnosChangeHandler =(e) =>{
       </div>
     </div>
   </div>
+<button type="submit" className="btn btn-success">Spara</button>
 </div>
+
+</form>
   </>
   )
 }

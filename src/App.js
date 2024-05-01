@@ -25,7 +25,7 @@ function App() {
 
  
   return (
-    <div className="App container mt-5">
+    <div className="App container mt-5 p-5">
       <PatientRegister/>
     </div>
   );

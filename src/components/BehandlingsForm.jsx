@@ -1,6 +1,17 @@
 import React from 'react'
+import KirurgiForm from './KirurgiForm';
 
-function BehandlingsForm({behandlingar, behandlingHandlerChange}) {
+function BehandlingsForm({behandlingar,
+    behandlingChangeHandler,
+    kirurgiChagneHandler}) {
+
+    let findKirurgi = behandlingar.behandlingsTyp;
+    let foundedKirurgi = findKirurgi?.includes("kirurgi")
+    console.log(foundedKirurgi)
+
+
+    const {kirurgi} = behandlingar;
+  
   return (
     <div className='row mb-3'>
         <div className="col">
@@ -13,37 +24,29 @@ function BehandlingsForm({behandlingar, behandlingHandlerChange}) {
           value={behandlingar.behandlingsTyp}
           className="form-control"
           placeholder="Behandlings typ"
-          onChange={behandlingHandlerChange}
+          onChange={behandlingChangeHandler}
         />
       </div>
-        <div className='mb-3'>
-        {behandlingar.behandlingsTyp.includes("kirurgi")?
-        
-    <>
-    <input type='text' className='form-control' placeholder='ABC123'/>
-        <button type='submit' className='btn btn-info text-white mt-2'>Lägg till operationskod</button>
-    </>
-    : null
-    }
-        
-        </div>
-        
+         
       <div className="mb-3">
         <label htmlFor="behandlingsDatum">Behandlings Datum</label>
-
         <input
           type="date"
           name="behandlingsDatum"
           id="behandlingsDatum"
-          value={behandlingar.behandlingsDatum.toLocaleString()}
+          value={behandlingar?.behandlingsDatum}
           placeholder="Behandlings Datum"
           className="form-control"
-          onChange={behandlingHandlerChange}
+          onChange={behandlingChangeHandler}
         />
       </div> 
+      {
+        foundedKirurgi && <KirurgiForm kirurgi={kirurgi}
+        kirurgiChagneHandler={kirurgiChagneHandler}
+        />
+      }
 
-
-        </div>
+    </div>
     </div>
   )
 }
