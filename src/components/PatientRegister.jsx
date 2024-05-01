@@ -3,6 +3,7 @@ import { behandlingsLista, diagnosLista } from "../data/cancerData";
 import DiagnosForm from "./DiagnosForm";
 import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
+import AllmäntillståndForm from "./AllmäntillståndForm";
 function PatientRegister() {
 
   const [patient, setPatient] = useState({
@@ -11,7 +12,12 @@ function PatientRegister() {
     age: "",
     phone: "",
     diagnos: {diagnosTyp: "", diagnosDatum: new Date},
-    behandlingar: {behandlingsTyp: "",behandlingsDatum: new Date}
+    behandlingar: {behandlingsTyp: "",behandlingsDatum: new Date},
+
+    allmänTillstånd: {
+      Ecog: "",
+      datum:""
+    }
   });
 
   console.log(patient)
@@ -19,6 +25,9 @@ function PatientRegister() {
 // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
 let {diagnos} = patient; 
 let {behandlingar} = patient;
+let {allmänTillstånd} = patient;
+
+
   const patientChangeHandler = (e) => {
     e.preventDefault();
     setPatient({
@@ -40,6 +49,17 @@ let {behandlingar} = patient;
 
    })
 
+  }
+
+
+  const allmänTillståndChagneHandler =(e)=>{
+    setPatient({
+      ...patient,
+      allmänTillstånd:{
+        ...patient.allmänTillstånd,
+        [e.target.name]: e.target.value
+      }
+    })
   }
 
 const diagnosChangeHandler =(e) =>{
@@ -113,6 +133,32 @@ const diagnosChangeHandler =(e) =>{
         <BehandlingsForm 
         behandlingar={behandlingar}
         behandlingHandlerChange={behandlingHandlerChange}
+        setPatient={setPatient}
+        />
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  {/* Allmäntillstånd */}
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      Allmäntillstånd
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+     <div className="row justify-content-center align-items-center g-2">
+      <div className="col">
+        <h3>Allmäntillstånd</h3>
+        <AllmäntillståndForm 
+        allmänTillstånd={allmänTillstånd}
+        allmänTillståndChagneHandler={allmänTillståndChagneHandler}
         setPatient={setPatient}
         />
       </div>
