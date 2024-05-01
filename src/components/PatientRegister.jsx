@@ -60,19 +60,6 @@ function PatientRegister() {
       },
     });
   };
-
-  // const kirurgiChagneHandler =(e)=>{
-  //   setPatient({
-  //     ...patient,
-  //     ...patient.behandlingar,
-  //     kirurgi:{
-  //       ...patient.behandlingar,
-  //       [e.target.name]: e.target.value
-  //     }
-
-  //   })
-  // }
-
   const diagnosChangeHandler = (e) => {
     setPatient({
       ...patient,
@@ -84,10 +71,14 @@ function PatientRegister() {
   };
 
   //spara patien med nödvändiga information
-
+  //spara flera patienter i LocalStorage DB
+  let patients = []
   function sparaPatient(e) {
     e.preventDefault();
-    localStorage.setItem("patient", JSON.stringify(patient));
+    setPatient(patient)
+    patients = JSON.parse(localStorage.getItem("patients","[]"))
+    patients.push(patient)
+    localStorage.setItem("patients", JSON.stringify(patients));
     console.log(patient);
   }
   return (
