@@ -16,7 +16,18 @@ function BehandlingsForm({behandlingar, behandlingHandlerChange}) {
           onChange={behandlingHandlerChange}
         />
       </div>
-
+        <div className='mb-3'>
+        {behandlingar.behandlingsTyp.includes("kirurgi")?
+        
+    <>
+    <input type='text' className='form-control' placeholder='ABC123'/>
+        <button type='submit' className='btn btn-info text-white mt-2'>Lägg till operationskod</button>
+    </>
+    : null
+    }
+        
+        </div>
+        
       <div className="mb-3">
         <label htmlFor="behandlingsDatum">Behandlings Datum</label>
 
@@ -30,6 +41,7 @@ function BehandlingsForm({behandlingar, behandlingHandlerChange}) {
           onChange={behandlingHandlerChange}
         />
       </div> 
+
 
         </div>
     </div>

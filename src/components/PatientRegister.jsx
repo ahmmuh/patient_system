@@ -35,7 +35,6 @@ let {behandlingar} = patient;
     behandlingar:{
       ...patient.behandlingar,
       [e.target.name]:  e.target.value,
-      [e.target.name]: e.target.value
 
     }
 
@@ -43,14 +42,29 @@ let {behandlingar} = patient;
 
   }
 
-  // [nestedKey]: {
-  //   ...patient[nestedKey],
-  //   [key]: value
-  // }
+const diagnosChangeHandler =(e) =>{
+  setPatient({
+    ...patient,
+    diagnos:{
+      ...patient.diagnos,
+      [e.target.name]: e.target.value,
+
+    }
+  })
+}
   return (
-    <div className="container">
-      {/* Patient information */}
-    <div className="row justify-content-center align-items-center g-2">
+    <>
+    <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Patient Information
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+ {/* Patient information */}
+ <div className="row justify-content-center align-items-center g-2">
       <div className="col">
         <h3>Patient information</h3>
         <Patientform patientChangeHandler={patientChangeHandler}
@@ -58,28 +72,42 @@ let {behandlingar} = patient;
       </div>
     </div>
 
-    {/* Diagnos */}
-
-    {/* <div className="row justify-content-center align-items-center g-2">
+        </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Diagnos
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+  {/* Diagnos */}
+<div className="row justify-content-center align-items-center g-2">
       <div className="col">
         <h3>Diagnos</h3>
         <DiagnosForm 
-        changeHandler={changeHandler}
+        diagnosChangeHandler={diagnosChangeHandler}
         setPatient={setPatient}
         diagnos={diagnos}
         />
       </div>
-    </div> */}
+    </div> 
 
-
-{/* test form */}
-{/* <form>
-  <input type="text" value={patient.behandlingar.behandlingsTyp} onChange={changeHandler}/>
-  <input type="date" value={patient.behandlingar.behandlingsDatum} onChange={changeHandler}/>
-</form> */}
-    {/* Behandlingar */}
-
-    <div className="row justify-content-center align-items-center g-2">
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Behandling
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+     {/* Behandlingar */}
+     <div className="row justify-content-center align-items-center g-2">
       <div className="col">
         <h3>Behandlingar</h3>
         <BehandlingsForm 
@@ -89,7 +117,26 @@ let {behandlingar} = patient;
         />
       </div>
     </div>
+      </div>
+    </div>
   </div>
+</div>
+
+
+    <div className="container">
+     
+
+    
+
+
+{/* test form */}
+{/* <form>
+  <input type="text" value={patient.behandlingar.behandlingsTyp} onChange={changeHandler}/>
+  <input type="date" value={patient.behandlingar.behandlingsDatum} onChange={changeHandler}/>
+</form> */}
+   
+  </div>
+  </>
   )
 }
 

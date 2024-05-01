@@ -1,8 +1,6 @@
 import React from 'react'
 
-function DiagnosForm({diagnos,patientChangeHandler}) {
-  // console.log("diagnos",diagnos)
-
+function DiagnosForm({diagnos,diagnosChangeHandler}) {
   return (
     <div className='row mb-5'>
       <div className='col'>
@@ -17,7 +15,7 @@ function DiagnosForm({diagnos,patientChangeHandler}) {
             id='diagnosTyp'
             value={diagnos.diagnosTyp}
             aria-describedby="diagnosTyp"
-             onChange={patientChangeHandler}
+             onChange={diagnosChangeHandler}
 
           />
         </div>
@@ -32,7 +30,7 @@ function DiagnosForm({diagnos,patientChangeHandler}) {
             id='diagnosDatum'
             value={diagnos.diagnosDatum}
             aria-describedby="diagnosDatum"
-             onChange={patientChangeHandler}
+             onChange={diagnosChangeHandler}
 
           />
         
