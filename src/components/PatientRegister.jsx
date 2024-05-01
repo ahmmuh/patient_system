@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { patients } from "../data/patient";
 import { behandlingsLista, diagnosLista } from "../data/cancerData";
 import DiagnosForm from "./DiagnosForm";
 import BehandlingsForm from "./BehandlingsForm";
@@ -12,11 +11,12 @@ function PatientRegister() {
     age: "",
     phone: "",
     diagnos: {diagnosTyp: "", diagnosDatum: new Date},
+    behandlingar: {behandlingsTyp: "",behandlingsDatum: new Date}
   });
  
 // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
 let {diagnos} = patient; 
-
+let {behandlingar} = patient;
   const patientChangeHandler = (e) => {
     e.preventDefault();
     setPatient({
@@ -26,14 +26,28 @@ let {diagnos} = patient;
 
   };
 
+  //behandlingar changeHandler
+  const behandlingHandlerChange =(e) =>{
+   setPatient({
+    ...patient,
+    behandlingar:{
+      ...patient.behandlingar,
+      behandlingsTyp: e.target.value,
+      behandlingsDatum: e.target.value
 
-  //skriv ut patient info som namn
-  // console.log(patient)
+    }
+
+   })
+
+  }
+
+  // [nestedKey]: {
+  //   ...patient[nestedKey],
+  //   [key]: value
+  // }
   return (
-    <>
     <div className="container">
-    
-
+      {/* Patient information */}
     <div className="row justify-content-center align-items-center g-2">
       <div className="col">
         <h3>Patient information</h3>
@@ -42,80 +56,39 @@ let {diagnos} = patient;
       </div>
     </div>
 
-    <div className="row justify-content-center align-items-center g-2">
+    {/* Diagnos */}
+
+    {/* <div className="row justify-content-center align-items-center g-2">
       <div className="col">
         <h3>Diagnos</h3>
         <DiagnosForm 
-        patientChangeHandler={patientChangeHandler}
+        changeHandler={changeHandler}
         setPatient={setPatient}
         diagnos={diagnos}
         />
       </div>
-    </div>
-
-    <div className="row my-3">
-      {/* <div className="mb-3">
-      <label htmlFor="" className="form-label">
-        <h3>Patient information</h3>
-      </label>
-      <select
-        onChange={setPatient(e          className="form-select form-select-lg"
-      >
-        <option defaultValue="Välj">Välj patient</option>
-        {patients.map((patient) => (
-          <option key={patient.id} value={patient.id}>
-            {patient.name} - {patient.age} år gammal
-          </option>
-        ))}
-      </select>
     </div> */}
 
-      <form>
-        {/* <Patientform /> */}
-        {/* <input
-        type="text"
-        name="diagnosTyp"
-        value={patients.diagnosTyp}
-        placeholder="Diagnos Typ"
-        className="form-control"
-        onChange={handleSubmit}
-      />
 
-      <input
-        type="date"
-        name="diagnosDatum"
-        value={patients.diagnosDatum}
-        placeholder="Diagnos Datum"
-        className="form-control"
-        onChange={handleSubmit}
-      />
+{/* test form */}
+{/* <form>
+  <input type="text" value={patient.behandlingar.behandlingsTyp} onChange={changeHandler}/>
+  <input type="date" value={patient.behandlingar.behandlingsDatum} onChange={changeHandler}/>
+</form> */}
+    {/* Behandlingar */}
 
-      <input
-        type="text"
-        name="behandling"
-        value={patients.behandling}
-        className="form-control"
-        onChange={handleSubmit}
-      />
-      <input
-        type="text"
-        name="ecog"
-        value={patients.ecog}
-        className="form-control"
-        onChange={handleSubmit}
-      />
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        className="btn btn-primary"
-      >
-        Spara
-      </button> */}
-      </form>
+    <div className="row justify-content-center align-items-center g-2">
+      <div className="col">
+        <h3>Behandlingar</h3>
+        <BehandlingsForm 
+        behandlingar={behandlingar}
+        behandlingHandlerChange={behandlingHandlerChange}
+        setPatient={setPatient}
+        />
+      </div>
     </div>
   </div>
-    </>
-  );
+  )
 }
 
 export default PatientRegister;

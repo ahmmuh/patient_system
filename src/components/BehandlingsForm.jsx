@@ -1,29 +1,37 @@
 import React from 'react'
 
-function BehandlingsForm({behandlingar,setPatientBehandlingar}) {
+function BehandlingsForm({behandlingar, behandlingHandlerChange}) {
   return (
     <div className='row mb-3'>
-        <div className="col mb-3">
-            <label htmlFor="" className="form-label">
-        <h5 className='lead'>BehandlingsTyper</h5>
+        <div className="col">
+    <div className="mb-3">
+        <label htmlFor="behandlingsTyp">Behandlings typ</label>
+        <input
+          type="text"
+          name="behandlingsTyp"
+          id="behandlingsTyp"
+          value={behandlingar.behandlingsTyp}
+          className="form-control"
+          placeholder="Behandlings typ"
+          onChange={behandlingHandlerChange}
+        />
+      </div>
 
-            </label>
-            <select className="form-select form-select-lg"
-      
-                onChange={(e) => setPatientBehandlingar(e.target.value)}
-                
-                > 
-                <option value="Välj" defaultValue>Välj behandlingstyp</option>
-                {
-                    behandlingar.map((foundedBehandling) => (
-                        <option key={foundedBehandling.behandlingID} 
-                        value={foundedBehandling.behandlingsID}>{foundedBehandling.behandlingsTyp}</option>
-                    ))
-                }
-            
-            </select>
+      <div className="mb-3">
+        <label htmlFor="behandlingsDatum">Behandlings Datum</label>
+
+        <input
+          type="date"
+          name="behandlingsDatum"
+          id="behandlingsDatum"
+          value={behandlingar.behandlingsDatum.toLocaleString()}
+          placeholder="Behandlings Datum"
+          className="form-control"
+          onChange={behandlingHandlerChange}
+        />
+      </div> 
+
         </div>
-        
     </div>
   )
 }

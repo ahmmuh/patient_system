@@ -1,8 +1,7 @@
 import React from 'react'
 
 function DiagnosForm({diagnos,patientChangeHandler}) {
-  let {diagnosTyp,diagnosDatum} = diagnos;
-  console.log("diagnos",diagnos)
+  // console.log("diagnos",diagnos)
 
   return (
     <div className='row mb-5'>
@@ -16,7 +15,7 @@ function DiagnosForm({diagnos,patientChangeHandler}) {
             className="form-control"
             name="diagnosTyp"
             id='diagnosTyp'
-            value={diagnosTyp.diagnosTyp}
+            value={diagnos.diagnosTyp}
             aria-describedby="diagnosTyp"
              onChange={patientChangeHandler}
 
@@ -31,7 +30,7 @@ function DiagnosForm({diagnos,patientChangeHandler}) {
             className="form-control"
             name="diagnosDatum"
             id='diagnosDatum'
-            value={diagnosDatum.diagnosDatum}
+            value={diagnos.diagnosDatum}
             aria-describedby="diagnosDatum"
              onChange={patientChangeHandler}
 
