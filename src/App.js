@@ -6,28 +6,26 @@ import DiagnosForm from './components/DiagnosForm';
 import OperationskodForm from './components/OperationskodForm';
 import PatientRegister from './components/PatientRegister';
 import Patientform from './components/Patientform';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
+import Canceranmalan from './Canceranmalan';
 
 
 function App() {
-
-// const [allmäntillStånd, setAllmäntillstånd] = useState({
-
-// })
-//   const [behandling,setBehandling] = useState({})
-
-
-//   const [selectedBehandling, setSelectedBehandling] = useState("")
-
-//   const [operationkod,setOperationkod] = useState([])
-//   const [ecog, setEcog] = useState(0)
-
-//   const [patient, setPatient] = useState()
-
- 
-  return (
-    <div className="App container mt-5 p-5">
-      <PatientRegister/>
+return (
+   <Router>
+     <>
+    <Navbar/>
+    <div className="App container p-5">
+      <Routes>
+        <Route path='/' element={<PatientRegister/>}/>
+        <Route path='/cancerAnmalan' element={<Canceranmalan/>}/>
+      </Routes>
+   
     </div>
+
+    </>
+   </Router>
   );
 }
 

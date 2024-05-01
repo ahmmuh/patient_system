@@ -21,7 +21,7 @@ function BehandlingsForm({behandlingar,
           type="text"
           name="behandlingsTyp"
           id="behandlingsTyp"
-          value={behandlingar?.behandlingsTyp}
+          value={behandlingar?.behandlingsTyp || ""}
           className="form-control"
           placeholder="Behandlings typ"
           onChange={behandlingChangeHandler}
@@ -34,7 +34,7 @@ function BehandlingsForm({behandlingar,
           type="date"
           name="behandlingsDatum"
           id="behandlingsDatum"
-          value={behandlingar?.behandlingsDatum}
+          value={behandlingar?.behandlingsDatum || ""}
           placeholder="Behandlings Datum"
           className="form-control"
           onChange={behandlingChangeHandler}
@@ -49,7 +49,6 @@ function BehandlingsForm({behandlingar,
         id='operationskod'
         value={kirurgi?.operationskod}
         onChange={behandlingChangeHandler} placeholder='ABC123'/>
-        <button type='submit' className='btn btn-info text-white mt-2'>Lägg till operationskod</button>
      </div>: null
       }
 
