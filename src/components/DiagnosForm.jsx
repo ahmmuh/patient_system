@@ -1,44 +1,44 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-function DiagnosForm({diagnos,setPatientRegister}) {
+function DiagnosForm({diagnos,patientChangeHandler}) {
+  let {diagnosTyp,diagnosDatum} = diagnos;
+  console.log("diagnos",diagnos)
+
   return (
     <div className='row mb-5'>
       <div className='col'>
        
         <div className="mb-3">
-          <label htmlFor="" className="form-label"><h5 className='lead'>Grund för diagnos</h5></label>
-          <select
-          onChange={(e) => setPatientRegister(e.target.value)}
-          name='diagnosTyp'
-            className="form-select form-select-lg">
-            <option defaultValue>Välj diagnos</option>
-            <option value={1}>Volvo</option>
-            {
-              diagnos.map((diagno) =>(
-                <option key={diagno.diagnosId} value={diagno.diagnosTyp}>{diagno.diagnosTyp}</option>
+        
+        <label htmlFor="diagnosTyp" className="form-label">Grund för diagnos</label>
+          <input
+            type="text"
+            className="form-control"
+            name="diagnosTyp"
+            id='diagnosTyp'
+            value={diagnosTyp.diagnosTyp}
+            aria-describedby="diagnosTyp"
+             onChange={patientChangeHandler}
 
-              ))
-            }
-         
-          </select>
-
+          />
         </div>
 
 
         <div className="mb-3">
-          <label htmlFor="" className="form-label">Diagnos Datum</label>
+          <label htmlFor="diagnosDatum" className="form-label">Diagnos Datum</label>
           <input
-            type={'date'}
+            type="date"
             className="form-control"
             name="diagnosDatum"
-            // value={diagnos.diagnosDatum}
+            id='diagnosDatum'
+            value={diagnosDatum.diagnosDatum}
             aria-describedby="diagnosDatum"
-            // onChange={handleChangeForDiagnos}
+             onChange={patientChangeHandler}
 
           />
         
         </div> 
-        
+
       </div>
     </div>
   )

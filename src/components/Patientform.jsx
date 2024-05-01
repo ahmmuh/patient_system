@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 
-function Patientform({ patient,setPatient,patientChangeHandler }) {
+function Patientform({ patient,patientChangeHandler }) {
 
 // console.log("Old patient",patient)
-    // const changeHandler = (e) =>{
-    //     setNewPatient(e.target.value)
-    // }
-
-    // console.log("New Patient", newPatient)
   return (
     <div className="col">
     <div className="mb-3">
