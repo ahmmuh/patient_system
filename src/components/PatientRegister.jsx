@@ -13,6 +13,8 @@ function PatientRegister() {
     diagnos: {diagnosTyp: "", diagnosDatum: new Date},
     behandlingar: {behandlingsTyp: "",behandlingsDatum: new Date}
   });
+
+  console.log(patient)
  
 // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
 let {diagnos} = patient; 
@@ -32,8 +34,8 @@ let {behandlingar} = patient;
     ...patient,
     behandlingar:{
       ...patient.behandlingar,
-      behandlingsTyp: e.target.value,
-      behandlingsDatum: e.target.value
+      [e.target.name]:  e.target.value,
+      [e.target.name]: e.target.value
 
     }
 
