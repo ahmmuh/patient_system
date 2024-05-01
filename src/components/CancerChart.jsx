@@ -15,9 +15,16 @@ function CancerChart({ecogOchdata}) {
         datasets: [
             {
                 label: 'Diagnosdatum och högsta ECOG',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                borderColor: 'rgba(255,99,132,1)',
-                borderWidth: 1,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                   
+                  ],
+                  borderColor: [
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                  ],
+                  borderWidth: 1,
                 hoverBackgroundColor: 'rgba(255,99,132,0.4)',
                 hoverBorderColor: 'rgba(255,99,132,1)',
                 data: ecogOchdata.map((data) => data.ecog),

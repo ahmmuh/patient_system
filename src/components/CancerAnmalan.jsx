@@ -4,7 +4,7 @@ import DiagnosForm from "./DiagnosForm";
 import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
-function PatientRegister() {
+function CancerAnmalan() {
   const [patient, setPatient] = useState({
     firstName: "",
     lastName: "",
@@ -242,4 +242,4 @@ function PatientRegister() {
   );
 }
 
-export default PatientRegister;
+export default CancerAnmalan;

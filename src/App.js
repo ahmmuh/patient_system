@@ -4,11 +4,11 @@ import AllmäntillståndForm from './components/AllmantillstandForm';
 import BehandlingsForm from './components/BehandlingsForm';
 import DiagnosForm from './components/DiagnosForm';
 import OperationskodForm from './components/OperationskodForm';
-import PatientRegister from './components/PatientRegister';
+import PatientRegister from './components/CancerAnmalan';
 import Patientform from './components/Patientform';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
-import Canceranmalan from './Canceranmalan';
+import Canceranmalan from './Start';
 
 
 function App() {
@@ -18,8 +18,8 @@ return (
     <Navbar/>
     <div className="App container p-5">
       <Routes>
-        <Route path='/' element={<PatientRegister/>}/>
-        <Route path='/cancerAnmalan' element={<Canceranmalan/>}/>
+        <Route path='/cancerAnmalan' element={<PatientRegister/>}/>
+        <Route path='/' element={<Canceranmalan/>}/>
       </Routes>
    
     </div>
