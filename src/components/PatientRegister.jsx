@@ -16,7 +16,7 @@ function PatientRegister() {
       {
         behandlingsTyp: "",behandlingsDatum: new Date,
         kirurgi: {
-          operationskod: ""
+          operationskod: "Kirurgi is here"
         }
       }
     ],
@@ -70,6 +70,7 @@ let {diagnos,behandlingar,allmanTillstand} = patient;
 
   const kirurgiChagneHandler =(e)=>{
     setPatient({
+      ...patient,
       ...patient.behandlingar,
       kirurgi:{
         ...patient.behandlingar,
@@ -160,7 +161,6 @@ function sparaPatient(e){
         <BehandlingsForm 
         behandlingar={behandlingar}
         behandlingChangeHandler={behandlingChangeHandler}
-        kirurgiChagneHandler={kirurgiChagneHandler}
         setPatient={setPatient}
         />
       </div>

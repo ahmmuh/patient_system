@@ -21,7 +21,7 @@ function BehandlingsForm({behandlingar,
           type="text"
           name="behandlingsTyp"
           id="behandlingsTyp"
-          value={behandlingar.behandlingsTyp}
+          value={behandlingar?.behandlingsTyp}
           className="form-control"
           placeholder="Behandlings typ"
           onChange={behandlingChangeHandler}
@@ -41,9 +41,16 @@ function BehandlingsForm({behandlingar,
         />
       </div> 
       {
-        foundedKirurgi && <KirurgiForm kirurgi={kirurgi}
-        kirurgiChagneHandler={kirurgiChagneHandler}
-        />
+        foundedKirurgi? <div className='mb-3'>
+        
+        <input type='text' 
+        className='form-control' 
+        name='operationskod'
+        id='operationskod'
+        value={kirurgi?.operationskod}
+        onChange={behandlingChangeHandler} placeholder='ABC123'/>
+        <button type='submit' className='btn btn-info text-white mt-2'>Lägg till operationskod</button>
+     </div>: null
       }
 
     </div>
