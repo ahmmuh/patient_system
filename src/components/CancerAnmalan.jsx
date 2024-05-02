@@ -8,6 +8,8 @@ import {validateForm} from "../validation/validateForm";
 function CancerAnmalan() {
   const navigate = useNavigate()
 
+  const [errors, setErrors] = useState({})
+
   const [patient, setPatient] = useState(
     {
       firstName: "",
@@ -32,21 +34,17 @@ function CancerAnmalan() {
     }
   );
 
-  console.log("Patient data : ", patient)
-
-  
 
   // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
   let { allmanTillstand, behandlingar, diagnos } = patient;
-  // console.log(behandlingar?.kirurgi)
-
+ 
   const patientChangeHandler = (e) => {
     e.preventDefault();
-    
     setPatient({
       ...patient,
       [e.target.name]: e.target.value,
     });
+    
   };
 
   const allmanTillstandChagneHandler = (e) => {
@@ -85,19 +83,27 @@ function CancerAnmalan() {
   let patients = []
   function sparaPatient(e) {
     e.preventDefault();
-    patients = JSON.parse(localStorage.getItem("patients","[]"))
-
     if(validateForm(patient)){
-      setPatient(patient);
+      return false;
+    }
+
+    else{
+      patients = JSON.parse(localStorage.getItem("patients","[]"))
       patients.push(patient)
       localStorage.setItem("patients", JSON.stringify(patients));
-      navigate("/")
+      setPatient(patient);
+        navigate("/")
+  
+     return true
 
     }
-   return false
+   
+    
+   }
+   
     
 
-  }
+  
   
   return (
     <>
@@ -131,6 +137,8 @@ function CancerAnmalan() {
                       patientChangeHandler={patientChangeHandler}
                       setPatient={setPatient}
                       patient={patient}
+                      errors={errors}
+                      setErrors={setErrors}
                     />
                   </div>
                 </div>

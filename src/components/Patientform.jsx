@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Input from "../reuseableComponents/Input";
 
-function Patientform({ patient,patientChangeHandler }) {
+function Patientform({ patient,patientChangeHandler, errors,setErrors }) {
   return (
     <div className="col">
      
@@ -16,6 +15,9 @@ function Patientform({ patient,patientChangeHandler }) {
           placeholder="Förnamn"
           onChange={patientChangeHandler}
         />
+        {errors.name && <span className="alert text-danger" role="alert">{errors.name}</span>}
+        
+        
       </div>
 
       <div className="mb-3">
@@ -35,7 +37,7 @@ function Patientform({ patient,patientChangeHandler }) {
       <div className="mb-3">
         <label htmlFor="age">Ålder</label>
         <input
-          type="text"
+          type="number"
           name="age"
           id="age"
           value={patient.age}

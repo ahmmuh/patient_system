@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import './App.css';
-import AllmäntillståndForm from './components/AllmantillstandForm';
 import CancerAnmalan from './components/CancerAnmalan';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';

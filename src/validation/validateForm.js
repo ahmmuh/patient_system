@@ -1,7 +1,5 @@
 
-
 export const validateForm = (patient)=>{
-    
     const errors = {}
     const operationRegex = /^[A-Z]{2}\d{4}$/;
     const {firstName,lastName, age,phone, 
@@ -9,7 +7,6 @@ export const validateForm = (patient)=>{
 
     const {behandlingsTyp, behandlingsDatum,kirurgi} = patient.behandlingar
 
-    console.log("Behandlings datum",behandlingsTyp,behandlingsDatum)
 
 
 
@@ -57,7 +54,7 @@ export const validateForm = (patient)=>{
      }
 
    
-     if(behandlingsTyp ===""){
+     if(behandlingsTyp === ""){
        alert("behandlingstyp saknas")
         errors.behandlingsTyp = "Behandlingstyp saknas"
        return false;
@@ -92,12 +89,6 @@ export const validateForm = (patient)=>{
      }
 
      return true
-
-    // const firstName = patient.firstName
-    // if(!operationRegex.test(kirurgi?.operationskod)){
-    //     alert("Operation kod måste innehålla 2 bokstäver med och 4 siffror")
-    //     return false;
-    // }
     return errors;
 }
 

@@ -1,17 +1,9 @@
 import React from 'react'
-import KirurgiForm from './KirurgiForm';
-
 function BehandlingsForm({behandlingar,
-    behandlingChangeHandler,
-    kirurgiChagneHandler}) {
+    behandlingChangeHandler}) {
 
     let findKirurgi = behandlingar.behandlingsTyp;
-    let foundedKirurgi = findKirurgi?.includes("kirurgi")
-    console.log(foundedKirurgi)
-
-
-    const {kirurgi} = behandlingar;
-  
+    let foundedKirurgi = findKirurgi?.includes("kirurgi")  
   return (
     <div className='row mb-3'>
         <div className="col">
@@ -47,8 +39,8 @@ function BehandlingsForm({behandlingar,
         className='form-control' 
         name='operationskod'
         id='operationskod'
-        value={behandlingar.kirurgi?.operationskod}
-        onChange={behandlingChangeHandler} placeholder='ABC123'/>
+        value={behandlingar.kirurgi?.operationskod.toUpperCase()}
+        onChange={behandlingChangeHandler} placeholder='AB5123'/>
      </div>: null
       }
 
