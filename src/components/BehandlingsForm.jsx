@@ -47,7 +47,7 @@ function BehandlingsForm({behandlingar,
         className='form-control' 
         name='operationskod'
         id='operationskod'
-        value={kirurgi?.operationskod}
+        value={behandlingar.kirurgi?.operationskod}
         onChange={behandlingChangeHandler} placeholder='ABC123'/>
      </div>: null
       }

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import Input from "../reuseableComponents/Input";
 
 function Patientform({ patient,patientChangeHandler }) {
   return (
     <div className="col">
+     
     <div className="mb-3">
         <label htmlFor="firstName">Förnamn</label>
         <input

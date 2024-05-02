@@ -1,8 +1,6 @@
 import React from 'react'
 import Chart from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2'
-import {CategoryScale} from 'chart.js'; 
-// Chart.plugins.register(CategoryScale);
 function CancerChart({ecogOchdata}) {
 
    
@@ -14,7 +12,7 @@ function CancerChart({ecogOchdata}) {
             labels: ecogOchdata.map((data) => data.datum),
         datasets: [
             {
-                label: 'Diagnosdatum och högsta ECOG',
+                label: 'Diagnosdatum och ECOG',
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(255, 159, 64, 0.2)',

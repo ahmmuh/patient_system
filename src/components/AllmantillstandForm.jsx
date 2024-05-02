@@ -11,7 +11,7 @@ function AllmantillstandForm({allmanTillstand,allmanTillstandChagneHandler}) {
           type='number'
           name='ecog'
           id='ecog'
-          value={allmanTillstand.ecog}
+          value={allmanTillstand?.ecog}
           onChange={allmanTillstandChagneHandler}
           min={0}
           max={5}
@@ -28,7 +28,7 @@ function AllmantillstandForm({allmanTillstand,allmanTillstandChagneHandler}) {
           type="date"
           name="datum"
           id="datum"
-          value={allmanTillstand.datum.toLocaleString()}
+          value={allmanTillstand?.datum.toLocaleString()}
           placeholder="Behandlings Datum"
           className="form-control"
           onChange={allmanTillstandChagneHandler}

@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "bdsoftware.format-on-auto-save"
+        "bdsoftware.format-on-auto-save",
+        "timonvs.reactsnippetsstandard",
+        "iceworks-team.iceworks-style-helper"
     ]
 }

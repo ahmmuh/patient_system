@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import AllmäntillståndForm from './components/AllmantillstandForm';
-import BehandlingsForm from './components/BehandlingsForm';
-import DiagnosForm from './components/DiagnosForm';
-import OperationskodForm from './components/OperationskodForm';
-import PatientRegister from './components/CancerAnmalan';
-import Patientform from './components/Patientform';
+import CancerAnmalan from './components/CancerAnmalan';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import Canceranmalan from './Start';
@@ -18,7 +14,7 @@ return (
     <Navbar/>
     <div className="App container p-5">
       <Routes>
-        <Route path='/cancerAnmalan' element={<PatientRegister/>}/>
+        <Route path='/cancerAnmalan' element={<CancerAnmalan/>}/>
         <Route path='/' element={<Canceranmalan/>}/>
       </Routes>
    

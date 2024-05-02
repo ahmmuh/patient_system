@@ -1,43 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DiagnosForm from "./DiagnosForm";
 import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
-import { useNavigate, useNavigation } from "react-router-dom";
-import { validateOperationskod } from "../validation/formValidate.js";
+import { useNavigate } from "react-router-dom";
+import {validateForm} from "../validation/validateForm";
 function CancerAnmalan() {
   const navigate = useNavigate()
 
-  const [patient, setPatient] = useState({
-
-    firstName: "",
-    lastName: "",
-    age: "",
-    phone: "",
-    diagnos: { diagnosTyp: "", diagnosDatum: new Date() },
-    behandlingar: [
-      {
-        behandlingsTyp: "",
-        behandlingsDatum: new Date(),
-        kirurgi: {
-          operationskod: "Kirurgi is here",
+  const [patient, setPatient] = useState(
+    {
+      firstName: "",
+      lastName: "",
+      age: "",
+      phone: "",
+      diagnos: { diagnosTyp: "", diagnosDatum: ""},
+      behandlingar: [
+        {
+          behandlingsTyp: "",
+          behandlingsDatum: "",
+          kirurgi: {
+            operationskod: "",
+          },
         },
+      ],
+  
+      allmanTillstand: {
+        ecog: 0,
+        datum: "",
       },
-    ],
+    }
+  );
 
-    allmanTillstand: {
-      ecog: 0,
-      datum: new Date(),
-    },
-  });
-
-  console.log(patient);
+  console.log("Patient data : ", patient)
 
   
 
   // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
-  let { diagnos, behandlingar, allmanTillstand } = patient;
-  console.log(behandlingar?.kirurgi)
+  let { allmanTillstand, behandlingar, diagnos } = patient;
+  // console.log(behandlingar?.kirurgi)
 
   const patientChangeHandler = (e) => {
     e.preventDefault();
@@ -64,7 +65,7 @@ function CancerAnmalan() {
       ...patient,
       behandlingar: {
         ...patient.behandlingar,
-        [e.target.name]: e.target.value,
+          [e.target.name]: e.target.value,
       },
     });
   };
@@ -74,6 +75,7 @@ function CancerAnmalan() {
       diagnos: {
         ...patient.diagnos,
         [e.target.name]: e.target.value,
+        
       },
     });
   };
@@ -83,11 +85,17 @@ function CancerAnmalan() {
   let patients = []
   function sparaPatient(e) {
     e.preventDefault();
-    setPatient(patient)
     patients = JSON.parse(localStorage.getItem("patients","[]"))
-    patients.push(patient)
-    localStorage.setItem("patients", JSON.stringify(patients));
-    navigate("/")
+
+    if(validateForm(patient)){
+      setPatient(patient);
+      patients.push(patient)
+      localStorage.setItem("patients", JSON.stringify(patients));
+      navigate("/")
+
+    }
+   return false
+    
 
   }
   
