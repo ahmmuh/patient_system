@@ -5,6 +5,7 @@ import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
 import { useNavigate } from "react-router-dom";
 import {validateForm} from "../validation/validateForm";
+import FormButton from "../customComponents/FormButton";
 function CancerAnmalan() {
   const navigate = useNavigate()
 
@@ -77,6 +78,8 @@ function CancerAnmalan() {
       },
     });
   };
+
+  console.log(patient)
 
   //spara patien med nödvändiga information
   //spara flera patienter i LocalStorage DB
@@ -259,11 +262,18 @@ function CancerAnmalan() {
               </div>
             </div>
           </div>
-          <button type="submit" className="btn btn-lg mt-1"
+          {/* <button type="submit" className="btn btn-lg mt-1"
           style={{backgroundColor: "#ee9f62", color:"white", width: "100%"}}
           >
             Spara
-          </button>
+          </button> */}
+
+          <FormButton type={'submit'} title={"Spara"} btnClass={'btn btn-lg mt-1'} style={{
+                backgroundColor: "#b6a795",
+                color:"white",
+                 width: "100%"
+          }}/>
+        
         </div>
       </form>
     </>
