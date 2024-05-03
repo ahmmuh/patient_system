@@ -1,52 +1,39 @@
-import React from 'react'
-function BehandlingsForm({behandlingar,
-    behandlingChangeHandler}) {
-
-    let findKirurgi = behandlingar.behandlingsTyp;
-    let foundedKirurgi = findKirurgi?.includes("kirurgi")  
+import React from "react";
+import FormInput from "../customComponents/FormInput";
+function BehandlingsForm({ behandlingar, behandlingChangeHandler }) {
+  let findKirurgi = behandlingar.behandlingsTyp;
+  let foundedKirurgi = findKirurgi?.includes("kirurgi");
   return (
-    <div className='row mb-3'>
-        <div className="col">
-    <div className="mb-3">
-        <label htmlFor="behandlingsTyp">Behandlings typ</label>
-        <input
-          type="text"
-          name="behandlingsTyp"
-          id="behandlingsTyp"
+    <div className="row mb-3">
+      <div className="col">
+        <FormInput
+          type={"text"}
+          name={"behandlingsTyp"}
           value={behandlingar?.behandlingsTyp || ""}
-          className="form-control"
-          placeholder="Behandlings typ"
+          label={"Behandlings typ"}
           onChange={behandlingChangeHandler}
         />
-      </div>
-         
-      <div className="mb-3">
-        <label htmlFor="behandlingsDatum">Behandlings Datum</label>
-        <input
-          type="date"
-          name="behandlingsDatum"
-          id="behandlingsDatum"
-          value={behandlingar?.behandlingsDatum || ""}
-          placeholder="Behandlings Datum"
-          className="form-control"
-          onChange={behandlingChangeHandler}
-        />
-      </div> 
-      {
-        foundedKirurgi? <div className='mb-3'>
-        
-        <input type='text' 
-        className='form-control' 
-        name='operationskod'
-        id='operationskod'
-        value={behandlingar.kirurgi?.operationskod.toUpperCase()}
-        onChange={behandlingChangeHandler} placeholder='AB5123'/>
-     </div>: null
-      }
 
+        <FormInput
+          type={"date"}
+          name={"behandlingsDatum"}
+          value={behandlingar?.behandlingsDatum || ""}
+          label={"Behandlings Datum"}
+          onChange={behandlingChangeHandler}
+        />
+
+        {foundedKirurgi ? (
+          <FormInput
+            type={"text"}
+            name={"operationskod"}
+            value={behandlingar.kirurgi?.operationskod}
+            label={"AB5123"}
+            onChange={behandlingChangeHandler}
+          />
+        ) : null}
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default BehandlingsForm
+export default BehandlingsForm;

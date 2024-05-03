@@ -4,48 +4,44 @@ import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
 import { useNavigate } from "react-router-dom";
-import {validateForm} from "../validation/validateForm";
+import { validateForm } from "../validation/validateForm";
 import FormButton from "../customComponents/FormButton";
 function CancerAnmalan() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
-  const [patient, setPatient] = useState(
-    {
-      firstName: "",
-      lastName: "",
-      age: "",
-      phone: "",
-      diagnos: { diagnosTyp: "", diagnosDatum: ""},
-      behandlingar: [
-        {
-          behandlingsTyp: "",
-          behandlingsDatum: "",
-          kirurgi: {
-            operationskod: "",
-          },
+  const [patient, setPatient] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    phone: "",
+    diagnos: { diagnosTyp: "", diagnosDatum: "" },
+    behandlingar: [
+      {
+        behandlingsTyp: "",
+        behandlingsDatum: "",
+        kirurgi: {
+          operationskod: "",
         },
-      ],
-  
-      allmanTillstand: {
-        ecog: 0,
-        datum: "",
       },
-    }
-  );
+    ],
 
+    allmanTillstand: {
+      ecog: 0,
+      datum: "",
+    },
+  });
 
   // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
   let { allmanTillstand, behandlingar, diagnos } = patient;
- 
+
   const patientChangeHandler = (e) => {
     e.preventDefault();
     setPatient({
       ...patient,
       [e.target.name]: e.target.value,
     });
-    
   };
 
   const allmanTillstandChagneHandler = (e) => {
@@ -64,7 +60,7 @@ function CancerAnmalan() {
       ...patient,
       behandlingar: {
         ...patient.behandlingar,
-          [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value,
       },
     });
   };
@@ -74,40 +70,30 @@ function CancerAnmalan() {
       diagnos: {
         ...patient.diagnos,
         [e.target.name]: e.target.value,
-        
       },
     });
   };
 
-  console.log(patient)
+  console.log(patient);
 
   //spara patien med nödvändiga information
   //spara flera patienter i LocalStorage DB
-  let patients = []
+  let patients = [];
   function sparaPatient(e) {
     e.preventDefault();
-    if(validateForm(patient)){
+    if (validateForm(patient)) {
       return false;
-    }
-
-    else{
-      patients = JSON.parse(localStorage.getItem("patients","[]"))
-      patients.push(patient)
+    } else {
+      patients = JSON.parse(localStorage.getItem("patients", "[]"));
+      patients.push(patient);
       localStorage.setItem("patients", JSON.stringify(patients));
       setPatient(patient);
-        navigate("/")
-  
-     return true
+      navigate("/");
 
+      return true;
     }
-   
-    
-   }
-   
-    
+  }
 
-  
-  
   return (
     <>
       <form onSubmit={sparaPatient}>
@@ -115,7 +101,7 @@ function CancerAnmalan() {
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingOne">
               <button
-                className="accordion-button"
+                className="accordion-button bg-light"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseOne"
@@ -132,10 +118,8 @@ function CancerAnmalan() {
               data-bs-parent="#accordionExample"
             >
               <div className="accordion-body">
-                {/* Patient information */}
                 <div className="row justify-content-center align-items-center g-2">
                   <div className="col">
-                    <h3>Patient information</h3>
                     <Patientform
                       patientChangeHandler={patientChangeHandler}
                       setPatient={setPatient}
@@ -200,20 +184,23 @@ function CancerAnmalan() {
               className="accordion-collapse collapse"
               aria-labelledby="headingThree"
               data-bs-parent="#accordionExample"
-              
             >
               <div className="accordion-body">
                 {/* Behandlingar */}
                 <div className="row justify-content-center align-items-center g-2">
                   <div className="col">
-                    <h3>Behandlingar 
-                   
-                    <i className="fa fa-info-circle text-success" 
-                    title="Operationskodsfältet visas endast när ‘kirurgi’ valts som behandlingstyp" style={{
-                      fontSize: '1rem'
-                    }}></i>
+                    <i
+                      className="fa fa-info-circle text-success"
+                      title="Operationskodfältet visas endast när ‘kirurgi’ skrivs in som behandlingstyp"
+                      style={{
+                        fontSize: "1rem",
+                      }}
+                    ></i>
+                    <small style={{ paddingLeft: ".4rem", fontSize: ".7rem" }}>
+                      Operationskodfältet visas endast när ‘kirurgi’ skrivs som
+                      behandlingstyp
+                    </small>
 
-                   </h3>
                     <BehandlingsForm
                       behandlingar={behandlingar}
                       behandlingChangeHandler={behandlingChangeHandler}
@@ -249,7 +236,6 @@ function CancerAnmalan() {
               <div className="accordion-body">
                 <div className="row justify-content-center align-items-center g-2">
                   <div className="col">
-                    <h3>Allmäntillstånd</h3>
                     <AllmantillstandForm
                       allmanTillstand={allmanTillstand}
                       allmanTillstandChagneHandler={
@@ -262,18 +248,17 @@ function CancerAnmalan() {
               </div>
             </div>
           </div>
-          {/* <button type="submit" className="btn btn-lg mt-1"
-          style={{backgroundColor: "#ee9f62", color:"white", width: "100%"}}
-          >
-            Spara
-          </button> */}
 
-          <FormButton type={'submit'} title={"Spara"} btnClass={'btn btn-lg mt-1'} style={{
-                backgroundColor: "#b6a795",
-                color:"white",
-                 width: "100%"
-          }}/>
-        
+          <FormButton
+            type={"submit"}
+            title={"Spara"}
+            btnClass={"btn btn-lg mt-1"}
+            style={{
+              backgroundColor: "#b6a795",
+              color: "white",
+              width: "100%",
+            }}
+          />
         </div>
       </form>
     </>

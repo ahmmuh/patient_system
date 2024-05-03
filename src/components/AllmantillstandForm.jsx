@@ -1,42 +1,32 @@
-import React from 'react'
-
-function AllmantillstandForm({allmanTillstand,allmanTillstandChagneHandler}) {
+import React from "react";
+import FormInput from "../customComponents/FormInput";
+function AllmantillstandForm({
+  allmanTillstand,
+  allmanTillstandChagneHandler,
+}) {
   return (
-    <div className='row'>
-      <h5 className='lead'>Patientens allmanTillstand </h5>
-      <div className='col'>
-        <div className='mb-3'>
-        <label htmlFor="ecog">ECOG Värde</label>
-        <input className='form-control'
-          type='number'
-          name='ecog'
-          id='ecog'
+    <div className="row">
+      <div className="col">
+        <FormInput
+          type={"number"}
+          name={"ecog"}
           value={allmanTillstand?.ecog}
-          onChange={allmanTillstandChagneHandler}
-          min={0}
-          max={5}
-         
-          placeholder='ECOG, 0–5'/>
-        </div>
-      </div>
-
-     <div className='col'>
-     <div className="mb-3">
-        <label htmlFor="datum">ECOG Datum</label>
-
-        <input
-          type="date"
-          name="datum"
-          id="datum"
-          value={allmanTillstand?.datum.toLocaleString()}
-          placeholder="Behandlings Datum"
-          className="form-control"
+          label={"ECOG (0-5)"}
           onChange={allmanTillstandChagneHandler}
         />
-      </div> 
-     </div>
+      </div>
+
+      <div className="col">
+        <FormInput
+          type={"date"}
+          name={"datum"}
+          value={allmanTillstand?.datum}
+          label={"ECOG - Behandlings Datum"}
+          onChange={allmanTillstandChagneHandler}
+        />
+      </div>
     </div>
-  )
+  );
 }
 
-export default AllmantillstandForm
+export default AllmantillstandForm;
