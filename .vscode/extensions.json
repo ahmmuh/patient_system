@@ -2,6 +2,7 @@
     "recommendations": [
         "bdsoftware.format-on-auto-save",
         "timonvs.reactsnippetsstandard",
-        "iceworks-team.iceworks-style-helper"
+        "iceworks-team.iceworks-style-helper",
+        "torresgol10.bootstrap-class-autocomplete"
     ]
 }
