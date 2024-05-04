@@ -4,8 +4,9 @@ import BehandlingsForm from "./BehandlingsForm";
 import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
 import { useNavigate } from "react-router-dom";
-import { validateForm } from "../validation/validateForm";
 import FormButton from "../customComponents/FormButton";
+import { formValidationSchema } from "../validation/validateForm";
+
 function CancerAnmalan() {
   const navigate = useNavigate();
 
@@ -32,6 +33,37 @@ function CancerAnmalan() {
       datum: "",
     },
   });
+
+  // const formValidationSchema = Yup.object({
+
+  //   firstName: Yup.string().required(),
+  //     lastName: Yup.string().required(),
+  //     age: Yup.number().required(),
+  //     phone: Yup.number().required(),
+
+  //     diagnos: { 
+  //       diagnosTyp: Yup.string().required(),
+  //     diagnosDatum: Yup.date().required()
+  //    },
+      
+  //     behandlingar: Yup.array(
+  //       Yup.object({
+  //           behandlingsTyp: Yup.string().required(),
+  //           behandlingsDatum: Yup.date().required(),
+  //           kirurgi: {
+  //             operationskod: Yup.string().required(),
+  //         },
+  //       })
+  //     ),
+  
+    
+  
+  //     allmanTillstand: {
+  //       ecog: Yup.number().required(),
+  //       datum: Yup.date().required(),
+  //     },
+  // })
+  
 
   // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
   let { allmanTillstand, behandlingar, diagnos } = patient;
@@ -74,19 +106,35 @@ function CancerAnmalan() {
     });
   };
 
-  console.log(patient);
+
+  // function validatePatirntForm(patientData){
+  //   formValidationSchema.isValid(patientData)
+  //   .then((valid => console.log(valid)))
+  //   .catch((error ) => console.log(error))
+
+  // }
 
   //spara patien med nödvändiga information
   //spara flera patienter i LocalStorage DB
   let patients = [];
-  function sparaPatient(e) {
+  const sparaPatient = async (e)  =>{
     e.preventDefault();
-      patients = JSON.parse(localStorage.getItem("patients", "[]"));
-      patients.push(patient);
-      localStorage.setItem("patients", JSON.stringify(patients));
-      setPatient(patient);
-      console.log("Patient lista ", patients)
-      navigate("/");
+
+   try {
+  
+  await formValidationSchema.validate(patient,{abortEarly: false})
+  console.log("form submitted", patient);
+  } 
+  catch (errors) {
+    console.log("Form errors", errors)
+    
+  }
+    // patients.push(patient);
+    // patients = JSON.parse(localStorage.getItem("patients", "[]"));
+    //   localStorage.setItem("patients", JSON.stringify(patients));
+    //   setPatient(patient);
+    //   console.log("Patient lista ", patients)
+    //   navigate("/");
 
     
   }
