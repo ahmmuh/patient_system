@@ -1,6 +1,6 @@
 import React from "react";
 import FormInput from "../customComponents/FormInput";
-function BehandlingsForm({ behandlingar, behandlingChangeHandler }) {
+function BehandlingsForm({ behandlingar, behandlingChangeHandler,errors }) {
   let findKirurgi = behandlingar.behandlingsTyp;
   let foundedKirurgi = findKirurgi?.includes("kirurgi");
   return (
@@ -13,6 +13,12 @@ function BehandlingsForm({ behandlingar, behandlingChangeHandler }) {
           label={"Behandlings typ"}
           onChange={behandlingChangeHandler}
         />
+          {errors && <span
+        className="text-danger"
+      >
+        {errors.behandlingsTyp}
+      </span>
+      }
 
         <FormInput
           type={"date"}
@@ -21,16 +27,27 @@ function BehandlingsForm({ behandlingar, behandlingChangeHandler }) {
           label={"Behandlings Datum"}
           onChange={behandlingChangeHandler}
         />
-
+    {errors && <span
+        className="text-danger"
+      >
+        {errors.behandlingar?.behandlingsDatum}
+      </span>
+      }
         {foundedKirurgi ? (
           <FormInput
             type={"text"}
             name={"operationskod"}
-            value={behandlingar.kirurgi?.operationskod}
-            label={"AB5123"}
+            value={behandlingar.kirurgi?.operationskod || ""}
+            label={"Operationskod"}
             onChange={behandlingChangeHandler}
           />
         ) : null}
+          {errors && <span
+        className="text-danger"
+      >
+        {errors.behandlingar?.kirurgi?.operationskod}
+      </span>
+      }
       </div>
     </div>
   );

@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import FormInput from "../customComponents/FormInput";
 
-function Patientform({ patient, patientChangeHandler}) {
+function Patientform({ patient, patientChangeHandler,errors}) {
   return (
     <div className="col">
-      <FormInput
+     <FormInput
         type={"text"}
         name={"firstName"}
         value={patient.firstName}
         label={"Förnamn"}
         onChange={patientChangeHandler}
       />
+      {errors && <span
+        className="text-danger"
+      >
+        {errors.firstName}
+      </span>
+      }
 
       <FormInput
         type={"text"}
@@ -19,14 +25,25 @@ function Patientform({ patient, patientChangeHandler}) {
         label={"Efternamn"}
         onChange={patientChangeHandler}
       />
-
+      {errors && <span
+        className="text-danger"
+      >
+        {errors.lastName}
+      </span>
+      }
       <FormInput
-        type={"number"}
+        type={"text"}
         name={"age"}
         value={patient.age}
         label={"Ålder"}
         onChange={patientChangeHandler}
       />
+      {errors && <span
+        className="text-danger"
+      >
+        {errors.age}
+      </span>
+      }
 
       <FormInput
         type={"text"}
@@ -35,6 +52,12 @@ function Patientform({ patient, patientChangeHandler}) {
         label={"Telefon"}
         onChange={patientChangeHandler}
       />
+      {errors && <span
+        className="text-danger"
+      >
+        {errors.phone}
+      </span>
+      }
     </div>
   );
 }

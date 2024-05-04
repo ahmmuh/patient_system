@@ -3,6 +3,7 @@ import FormInput from "../customComponents/FormInput";
 function AllmantillstandForm({
   allmanTillstand,
   allmanTillstandChagneHandler,
+  errors
 }) {
   return (
     <div className="row">
@@ -14,6 +15,12 @@ function AllmantillstandForm({
           label={"ECOG (0-5)"}
           onChange={allmanTillstandChagneHandler}
         />
+          {errors && <span
+        className="text-danger"
+      >
+        {errors.ecog}
+      </span>
+      }
       </div>
 
       <div className="col">
@@ -24,6 +31,12 @@ function AllmantillstandForm({
           label={"ECOG - Datum"}
           onChange={allmanTillstandChagneHandler}
         />
+          {errors && <span
+        className="text-danger"
+      >
+        {errors.datum}
+      </span>
+      }
       </div>
     </div>
   );

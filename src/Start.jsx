@@ -8,7 +8,6 @@ function Start() {
   // ]
   // Patient hälsa tillstånd
   let patiantHalsaTillStand = patients?.map(({ allmanTillstand }) => {
-    console.log("PAtien allmäntillstånd", typeof allmanTillstand);
     return allmanTillstand;
   });
 

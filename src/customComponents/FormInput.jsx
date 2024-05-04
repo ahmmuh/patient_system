@@ -5,7 +5,7 @@ function FormInput({...props}) {
         borderRadius: '3rem'
     }
   return (
-    <div className="mb-3">
+    <div className="mb-3 mt-2">
         <label htmlFor={props.label}>{props.label}</label>
         <input
         style={inputStyle}

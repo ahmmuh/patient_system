@@ -5,7 +5,7 @@ import Patientform from "./Patientform";
 import AllmantillstandForm from "./AllmantillstandForm";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../customComponents/FormButton";
-import { formValidationSchema } from "../validation/validateForm";
+import { formValidationSchema } from "../validation/formValidationSchema";
 
 function CancerAnmalan() {
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ function CancerAnmalan() {
   const [patient, setPatient] = useState({
     firstName: "",
     lastName: "",
-    age: "",
-    phone: "",
+    age: 0,
+    phone: 0,
     diagnos: { diagnosTyp: "", diagnosDatum: "" },
     behandlingar: [
       {
@@ -34,36 +34,6 @@ function CancerAnmalan() {
     },
   });
 
-  // const formValidationSchema = Yup.object({
-
-  //   firstName: Yup.string().required(),
-  //     lastName: Yup.string().required(),
-  //     age: Yup.number().required(),
-  //     phone: Yup.number().required(),
-
-  //     diagnos: { 
-  //       diagnosTyp: Yup.string().required(),
-  //     diagnosDatum: Yup.date().required()
-  //    },
-      
-  //     behandlingar: Yup.array(
-  //       Yup.object({
-  //           behandlingsTyp: Yup.string().required(),
-  //           behandlingsDatum: Yup.date().required(),
-  //           kirurgi: {
-  //             operationskod: Yup.string().required(),
-  //         },
-  //       })
-  //     ),
-  
-    
-  
-  //     allmanTillstand: {
-  //       ecog: Yup.number().required(),
-  //       datum: Yup.date().required(),
-  //     },
-  // })
-  
 
   // ta ut diagnos from patient objekt - skicka in det vidare till <DiagnosForm /> komponent
   let { allmanTillstand, behandlingar, diagnos } = patient;
@@ -93,7 +63,11 @@ function CancerAnmalan() {
       behandlingar: {
         ...patient.behandlingar,
         [e.target.name]: e.target.value,
+        kirurgi:{
+          [e.target.name]: e.target.value
+        }
       },
+      
     });
   };
   const diagnosChangeHandler = (e) => {
@@ -102,40 +76,37 @@ function CancerAnmalan() {
       diagnos: {
         ...patient.diagnos,
         [e.target.name]: e.target.value,
-      },
+      }
     });
   };
 
-
-  // function validatePatirntForm(patientData){
-  //   formValidationSchema.isValid(patientData)
-  //   .then((valid => console.log(valid)))
-  //   .catch((error ) => console.log(error))
-
-  // }
-
   //spara patien med nödvändiga information
   //spara flera patienter i LocalStorage DB
-  let patients = [];
   const sparaPatient = async (e)  =>{
-    e.preventDefault();
+  let patients = [patient];
 
+    e.preventDefault();
+    
    try {
   
   await formValidationSchema.validate(patient,{abortEarly: false})
-  console.log("form submitted", patient);
+  patients.push(patient)
+
+  setPatient(patient);
+  localStorage.setItem("patients", JSON.stringify(patients));
+      navigate("/");
+
   } 
   catch (errors) {
-    console.log("Form errors", errors)
+    const newError = {}
+    errors.inner.forEach((err) =>{
+      newError[err.path] = err.message;
+    })
+
+    setErrors(newError)
     
   }
-    // patients.push(patient);
-    // patients = JSON.parse(localStorage.getItem("patients", "[]"));
-    //   localStorage.setItem("patients", JSON.stringify(patients));
-    //   setPatient(patient);
-    //   console.log("Patient lista ", patients)
-    //   navigate("/");
-
+    
     
   }
 
@@ -171,6 +142,8 @@ function CancerAnmalan() {
                       patientChangeHandler={patientChangeHandler}
                       setPatient={setPatient}
                       patient={patient}
+                      errors={errors}
+
                     />
                   </div>
                 </div>
@@ -204,6 +177,7 @@ function CancerAnmalan() {
                       diagnosChangeHandler={diagnosChangeHandler}
                       setPatient={setPatient}
                       diagnos={diagnos}
+                      errors={errors}
                     />
                   </div>
                 </div>
@@ -249,6 +223,7 @@ function CancerAnmalan() {
                       behandlingar={behandlingar}
                       behandlingChangeHandler={behandlingChangeHandler}
                       setPatient={setPatient}
+                      errors={errors}
                     />
                   </div>
                 </div>
@@ -286,6 +261,8 @@ function CancerAnmalan() {
                         allmanTillstandChagneHandler
                       }
                       setPatient={setPatient}
+                      errors={errors}
+
                     />
                   </div>
                 </div>
