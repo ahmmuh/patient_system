@@ -21,7 +21,7 @@ function AllmantillstandForm({
           type={"date"}
           name={"datum"}
           value={allmanTillstand?.datum}
-          label={"ECOG - Behandlings Datum"}
+          label={"ECOG - Datum"}
           onChange={allmanTillstandChagneHandler}
         />
       </div>

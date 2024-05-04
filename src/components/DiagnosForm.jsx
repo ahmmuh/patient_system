@@ -4,7 +4,7 @@ import FormInput from "../customComponents/FormInput";
 function DiagnosForm({ diagnos, diagnosChangeHandler }) {
   console.log("diagnos", diagnos);
   return (
-    <div className="row mb-5">
+    <div className="row mb-3">
       <div className="col">
         <FormInput
           type={"text"}

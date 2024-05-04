@@ -1,13 +1,12 @@
 import React from "react";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
-function CancerChart({ ecogOchdata }) {
-  // const data =
+function CancerChart({ patiantHalsaTillStand }) {
   return (
     <div>
       <Bar
         data={{
-          labels: ecogOchdata.map((data) => data.datum),
+          labels: patiantHalsaTillStand.map((data) => data.datum),
           datasets: [
             {
               label: "Diagnosdatum och ECOG",
@@ -19,7 +18,7 @@ function CancerChart({ ecogOchdata }) {
               borderWidth: 1,
               hoverBackgroundColor: "rgba(255,99,132,0.4)",
               hoverBorderColor: "rgba(255,99,132,1)",
-              data: ecogOchdata.map((data) => data.ecog),
+              data: patiantHalsaTillStand.map((data) => data.ecog),
             },
           ],
         }}

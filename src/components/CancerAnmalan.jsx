@@ -81,22 +81,21 @@ function CancerAnmalan() {
   let patients = [];
   function sparaPatient(e) {
     e.preventDefault();
-    if (validateForm(patient)) {
-      return false;
-    } else {
       patients = JSON.parse(localStorage.getItem("patients", "[]"));
       patients.push(patient);
       localStorage.setItem("patients", JSON.stringify(patients));
       setPatient(patient);
+      console.log("Patient lista ", patients)
       navigate("/");
 
-      return true;
-    }
+    
   }
 
   return (
     <>
-      <form onSubmit={sparaPatient}>
+      <div className="row justify-content-center">
+        <div className="col-lg-10 ">
+        <form onSubmit={sparaPatient}>
         <div className="accordion" id="accordionExample">
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingOne">
@@ -124,8 +123,6 @@ function CancerAnmalan() {
                       patientChangeHandler={patientChangeHandler}
                       setPatient={setPatient}
                       patient={patient}
-                      errors={errors}
-                      setErrors={setErrors}
                     />
                   </div>
                 </div>
@@ -155,7 +152,6 @@ function CancerAnmalan() {
                 {/* Diagnos */}
                 <div className="row justify-content-center align-items-center g-2">
                   <div className="col">
-                    <h3>Diagnos</h3>
                     <DiagnosForm
                       diagnosChangeHandler={diagnosChangeHandler}
                       setPatient={setPatient}
@@ -247,20 +243,24 @@ function CancerAnmalan() {
                 </div>
               </div>
             </div>
-          </div>
 
-          <FormButton
+            <FormButton
             type={"submit"}
             title={"Spara"}
-            btnClass={"btn btn-lg mt-1"}
+            btnClass={"btn btn-lg "}
             style={{
               backgroundColor: "#b6a795",
               color: "white",
               width: "100%",
             }}
           />
+          </div>
+
+       
         </div>
       </form>
+        </div>
+      </div>
     </>
   );
 }

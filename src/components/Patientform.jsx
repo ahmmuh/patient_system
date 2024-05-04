@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "../customComponents/FormInput";
 
-function Patientform({ patient, patientChangeHandler, errors, setErrors }) {
+function Patientform({ patient, patientChangeHandler}) {
   return (
     <div className="col">
       <FormInput
